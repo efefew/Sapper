@@ -2,28 +2,30 @@
 
 public class CameraMover : MonoBehaviour
 {
-    Transform tr;
-    Camera cam;
+    private Transform tr;
+    private Camera cam;
     public float speed = 0.001f, zoom = 0.05f;
     [SerializeField]
     [Header("крайние углы камеры")]
-    Vector2 minCam, maxCam;
+    private Vector2 minCam, maxCam;
     [Header("крайние углы поля")]
     public Vector2 min, max;
     public RectTransform rect;
-    void Start()
+
+    private void Start()
     {
         tr = transform;
         tr.position = new Vector3(0, 0, -100);
         cam.orthographicSize = 1000;
         OnChangeCameraPosition();
     }
+
     /// <summary>
     /// вычисляет расположения углов камеры в пространстве
     /// </summary>
     /// <param name="camera">камера, над которой производят рассчёты</param>
     /// <returns>расположение углов камеры в пространстве</returns>
-    (Vector2, Vector2) CameraBorders(Camera camera)
+    private (Vector2, Vector2) CameraBorders(Camera camera)
     {
         float size = camera.orthographicSize;
         int width = Screen.width;
@@ -40,6 +42,7 @@ public class CameraMover : MonoBehaviour
 
         return (minCameraPoint, maxCameraPoint);
     }
+
     /// <summary>
     /// вычисляет позицию камеры, чтобы она была внутри границ
     /// </summary>
@@ -47,7 +50,7 @@ public class CameraMover : MonoBehaviour
     /// <param name="camera">камера, над которой производят рассчёты</param>
     /// <param name="z">значение оси z камеры</param>
     /// <returns>позиция камеры внутри границ</returns>
-    Vector3 CameraPositionInsideBorders((Vector2 min, Vector2 max) point, Camera camera, float z) 
+    private Vector3 CameraPositionInsideBorders((Vector2 min, Vector2 max) point, Camera camera, float z)
     {
         (Vector2 min, Vector2 max) cameraPoint = CameraBorders(cam);
         float size = camera.orthographicSize;
@@ -75,59 +78,44 @@ public class CameraMover : MonoBehaviour
             cameraPosition = new Vector2(cameraPosition.x, point.max.y - size);
         return new Vector3(cameraPosition.x, cameraPosition.y, z);
     }
+
     /// <summary>
     /// меняет позицию интерфейса по краям оси Y
     /// </summary>
     /// <param name="up">поставить интерфейс в верхний угол?</param>
     /// <param name="rect">интерфейс</param>
-    void RectChangeY(bool up, RectTransform rect)
+    private void RectChangeY(bool up, RectTransform rect)
     {
-        if (up)
-        {
-            rect.anchorMin = new Vector2(rect.anchorMin.x, 0);
-            rect.anchorMax = new Vector2(rect.anchorMax.x, 0);
-            rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, 225);
-        }
-        else
-        {
-            rect.anchorMin = new Vector2(rect.anchorMin.x, 1);
-            rect.anchorMax = new Vector2(rect.anchorMax.x, 1);
-            rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -225);
-        }
+        rect.anchorMin = new Vector2(rect.anchorMin.x, up ? 0 : 1);
+        rect.anchorMax = new Vector2(rect.anchorMax.x, up ? 0 : 1);
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, up ? 1 : -1 * 225);
     }
+
     /// <summary>
     /// меняет позицию интерфейса по краям оси X
     /// </summary>
     /// <param name="right">поставить интерфейс в правый угол?</param>
     /// <param name="rect">интерфейс</param>
-    void RectChangeX(bool right, RectTransform rect)
+    private void RectChangeX(bool right, RectTransform rect)
     {
-        if (right)
-        {
-            rect.anchorMin = new Vector2(0, rect.anchorMin.y);
-            rect.anchorMax = new Vector2(0, rect.anchorMin.y);
-            rect.anchoredPosition = new Vector2(175, rect.anchoredPosition.y);
-        }
-        else
-        {
-            rect.anchorMin = new Vector2(1, rect.anchorMin.y);
-            rect.anchorMax = new Vector2(1, rect.anchorMin.y);
-            rect.anchoredPosition = new Vector2(-175, rect.anchoredPosition.y);
-        }
+        rect.anchorMin = new Vector2(right ? 0 : 1, rect.anchorMin.y);
+        rect.anchorMax = new Vector2(right ? 0 : 1, rect.anchorMin.y);
+        rect.anchoredPosition = new Vector2(right ? 1 : -1 * 175, rect.anchoredPosition.y);
     }
     /// <summary>
     /// Вызывает при изменении камеры
     /// </summary>
-    public void OnChangeCameraPosition() 
+    public void OnChangeCameraPosition()
     {
-        if(!cam)
+        if (!cam)
             cam = Camera.main;
         cam.transform.position = CameraPositionInsideBorders((min, max), cam, -100);
         (minCam, maxCam) = CameraBorders(cam);
         RectChangeY((minCam.y - min.y) >= (max.y - maxCam.y), rect);
         RectChangeX((minCam.x - min.x) >= (max.x - maxCam.x), rect);
     }
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
         if (Input.anyKey || Input.GetAxis("Mouse ScrollWheel") != 0)
         {

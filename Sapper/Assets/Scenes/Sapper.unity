@@ -239,7 +239,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 3
+  m_Text: 50
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -398,10 +398,10 @@ MonoBehaviour:
   content: {fileID: 118611459}
   xScale: 100
   yScale: 100
-  xSize: 3
-  ySize: 3
+  xSize: 50
+  ySize: 50
   cage: {fileID: 6299569277193351717, guid: 6ef49d987318f9f4eb80370a17de03a8, type: 3}
-  mines: 8
+  mines: 150
   flags: 0
   correctlyFlags: 0
   close: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: 50
 --- !u!222 &835512909
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1178,7 +1178,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 3
+  m_Text: 50
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -1758,7 +1758,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: 50
 --- !u!222 &1409762737
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 9
+  m_Text: 150
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -2077,7 +2077,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u043C\u0438\u043D \u043E\u0441\u0442\u0430\u043B\u043E\u0441\u044C: 500"
+  m_Text: "\u043C\u0438\u043D \u043E\u0441\u0442\u0430\u043B\u043E\u0441\u044C: 150"
 --- !u!222 &1539115864
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2395,7 +2395,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u043A\u043B\u0435\u0442\u043E\u043A \u0437\u0430\u043A\u0440\u044B\u0442\u043E:
-    2500"
+    600"
 --- !u!222 &1778509456
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2642,7 +2642,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 9
+  m_Text: 150
 --- !u!222 &2101828695
 CanvasRenderer:
   m_ObjectHideFlags: 0
